@@ -1,0 +1,38 @@
+{
+  "concepts": {
+    "neural networks": 0.937
+  },
+  "history": [
+    {
+      "concept": "neural networks",
+      "correct": true,
+      "score_before": 0.5,
+      "score_after": 0.805
+    },
+    {
+      "concept": "neural networks",
+      "correct": true,
+      "score_before": 0.805,
+      "score_after": 0.908
+    },
+    {
+      "concept": "neural networks",
+      "correct": true,
+      "score_before": 0.908,
+      "score_after": 0.932
+    },
+    {
+      "concept": "neural networks",
+      "correct": true,
+      "score_before": 0.932,
+      "score_after": 0.937
+    }
+  ],
+  "concept_details": {
+    "neural networks": {
+      "total_attempts": 4,
+      "total_correct": 4,
+      "current_difficulty": "analytical"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: adaptivetutor-backend
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false
+      - key: CHROMA_PATH
+        value: /data/chroma_db
+      - key: KNOWLEDGE_DIR
+        value: /data/knowledge_states
+      - key: FRONTEND_URL
+        sync: false
+    disk:
+      name: adaptivetutor-data
+      mountPath: /data
+      sizeGB: 1

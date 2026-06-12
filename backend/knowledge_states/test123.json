@@ -1,0 +1,46 @@
+{
+  "concepts": {
+    "machine learning": 0.937
+  },
+  "history": [
+    {
+      "concept": "machine learning",
+      "correct": true,
+      "score_before": 0.5,
+      "score_after": 0.805
+    },
+    {
+      "concept": "machine learning",
+      "correct": true,
+      "score_before": 0.805,
+      "score_after": 0.908
+    },
+    {
+      "concept": "machine learning",
+      "correct": true,
+      "score_before": 0.908,
+      "score_after": 0.932
+    },
+    {
+      "concept": "machine learning",
+      "correct": true,
+      "score_before": 0.932,
+      "score_after": 0.937
+    }
+  ],
+  "asked_questions": {
+    "machine learning": [
+      "What is the primary purpose of transfer learning in machine learning?",
+      "What type of machine learning involves training agents through rewards and penalties as they interact with an environment?",
+      "What is the primary focus of machine learning as a subset of artificial intelligence?",
+      "What characteristic allows computers to improve their performance on a task through experience without being explicitly programmed?"
+    ]
+  },
+  "concept_details": {
+    "machine learning": {
+      "total_attempts": 2,
+      "total_correct": 2,
+      "current_difficulty": "application"
+    }
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "concepts": {
+    "Data Addressing Modes in 8085 microprocessor": 0.908,
+    "Immediate Addressing Mode and Assembly Language Programming": 0.805,
+    "Immediate Addressing Mode": 0.805,
+    "Data Addressing modes in 8085 microprocessor": 0.537
+  },
+  "history": [
+    {
+      "concept": "Data Addressing Modes in 8085 microprocessor",
+      "correct": true,
+      "score_before": 0.5,
+      "score_after": 0.805
+    },
+    {
+      "concept": "Immediate Addressing Mode and Assembly Language Programming",
+      "correct": true,
+      "score_before": 0.5,
+      "score_after": 0.805
+    },
+    {
+      "concept": "Immediate Addressing Mode",
+      "correct": true,
+      "score_before": 0.5,
+      "score_after": 0.805
+    },
+    {
+      "concept": "Data Addressing Modes in 8085 microprocessor",
+      "correct": true,
+      "score_before": 0.805,
+      "score_after": 0.908
+    },
+    {
+      "concept": "Data Addressing modes in 8085 microprocessor",
+      "correct": true,
+      "score_before": 0.5,
+      "score_after": 0.805
+    },
+    {
+      "concept": "Data Addressing modes in 8085 microprocessor",
+      "correct": false,
+      "score_before": 0.805,
+      "score_after": 0.521
+    },
+    {
+      "concept": "Data Addressing modes in 8085 microprocessor",
+      "correct": true,
+      "score_before": 0.521,
+      "score_after": 0.815
+    },
+    {
+      "concept": "Data Addressing modes in 8085 microprocessor",
+      "correct": false,
+      "score_before": 0.815,
+      "score_after": 0.531
+    },
+    {
+      "concept": "Data Addressing modes in 8085 microprocessor",
+      "correct": true,
+      "score_before": 0.531,
+      "score_after": 0.819
+    },
+    {
+      "concept": "Data Addressing modes in 8085 microprocessor",
+      "correct": false,
+      "score_before": 0.819,
+      "score_after": 0.535
+    },
+    {
+      "concept": "Data Addressing modes in 8085 microprocessor",
+      "correct": true,
+      "score_before": 0.535,
+      "score_after": 0.821
+    },
+    {
+      "concept": "Data Addressing modes in 8085 microprocessor",
+      "correct": false,
+      "score_before": 0.821,
+      "score_after": 0.537
+    }
+  ],
+  "asked_questions": {
+    "Data Addressing modes in 8085 microprocessor": [
+      "What is the primary use of Register Addressing mode in 8085 microprocessor?",
+      "Which of the following is a characteristic of the Register Addressing mode in the 8085 microprocessor?",
+      "A programmer wants to implement a loop that increments a variable stored in the HL register pair in an 8085 microprocessor, which addressing mode would be the most efficient to use in this scenario?",
+      "A programmer is writing a subroutine in 8085 assembly language to swap the values of two variables stored in the B and C registers. Which addressing mode would be the most suitable to use in this scenario?",
+      "In an 8085 microprocessor, a programmer wants to add the value of a variable stored in memory location 2050H to the value in the accumulator. Which addressing mode would be the most suitable to use in this scenario?",
+      "Consider a scenario where a programmer needs to implement a subroutine in 8085 assembly language to calculate the sum of two variables stored in memory locations 2000H and 2001H and store the result in the accumulator. The subroutine also needs to use the HL register pair as a pointer to access these memory locations. Which addressing mode would be the most efficient to use to load the value from memory location 2000H into the accumulator, considering the 8085 microprocessor's architecture and the given constraints?",
+      "Suppose a programmer is writing a program in 8085 assembly language to perform a block transfer of 10 bytes from memory location 3000H to memory location 4000H. The programmer wants to use the most efficient addressing mode to load the bytes from the source location and store them at the destination location, considering the 8085 microprocessor's architecture. Which addressing mode would be the most suitable to use in this scenario?",
+      "Consider a scenario where a programmer needs to implement a loop in 8085 assembly language to find the minimum value in an array of 20 bytes stored in memory locations 2500H to 250FH. The programmer wants to use the HL register pair as a pointer to access the array elements and the accumulator to store the minimum value found so far. Which addressing mode would be the most efficient to use to compare the accumulator with each array element, considering the 8085 microprocessor's architecture and the given constraints?"
+    ]
+  },
+  "concept_details": {
+    "Data Addressing modes in 8085 microprocessor": {
+      "total_attempts": 7,
+      "total_correct": 3,
+      "current_difficulty": "analytical"
+    }
+  }
+}
