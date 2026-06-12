@@ -13,4 +13,3 @@ Pillow>=10.3.0
 groq>=0.12.0
 pydantic>=2.7.4
 numpy>=1.26.0
-torch==2.2.2 
