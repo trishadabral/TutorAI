@@ -1,188 +1,235 @@
 <div align="center">
 
-```
-    ___       __                 __            __  ______            __          
-   /   | ____/ /___ _____  _____/ /_  ______  / /_/ ____/_  ______/ /_____  _____
-  / /| |/ __  / __ `/ __ \/ ___/ __ \/ / __ \/ __/ /   / / / / __  / _ \ \/ / _ \
- / ___ / /_/ / /_/ / /_/ / /__/ / / / / /_/ / /_/ /___/ /_/ / /_/ /  __>  <  __/
-/_/  |_\__,_/\__,_/ .___/\___/_/ /_/_/____/\__/\____/\__,_/\__,_/\___/_/\_\/___/ 
-                 /_/                                                              
-```
+# 🧠 AdaptiveTutor
 
-**A RAG-Powered Personalized Study Assistant with Deep Knowledge Tracing**
+### AI-Powered Personalized Study Assistant
 
-[![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://python.org)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.109-green.svg)](https://fastapi.tiangolo.com)
-[![React](https://img.shields.io/badge/React-18+-61DAFB.svg)](https://react.dev)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.111-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
+[![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev)
+[![LangChain](https://img.shields.io/badge/LangChain-0.2-1C3C3C?style=for-the-badge&logo=langchain&logoColor=white)](https://langchain.com)
+[![ChromaDB](https://img.shields.io/badge/ChromaDB-0.5-FF6B35?style=for-the-badge)](https://trychroma.com)
+[![Groq](https://img.shields.io/badge/Groq-Llama_3.3_70B-F55036?style=for-the-badge)](https://groq.com)
+[![License](https://img.shields.io/badge/License-MIT-6C63FF?style=for-the-badge)](LICENSE)
+
+<br/>
+
+> **Turn your lecture notes and PDFs into a personal AI tutor that actually knows what you know — and adapts to help you learn faster.**
+
+<br/>
+
+## 🎬 Demo Video
+
+[![AdaptiveTutor Demo](https://img.shields.io/badge/▶%20Watch%20Full%20Demo-FF0000?style=for-the-badge&logo=google-drive&logoColor=white)](https://drive.google.com/file/d/1gmdl-aJrU2E94DNVMyRMAZqZcytaiide/view?usp=sharing)
+
+*Click above to watch the full demo — PDF upload → AI Chat → Adaptive Quiz → Knowledge Map*
 
 </div>
 
 ---
 
-## Problem Statement
+## 📖 What is AdaptiveTutor?
 
-Students upload massive PDFs to chat with them, but traditional RAG systems treat every student the same. A struggling student and an advanced student get identical answers and identical quiz questions. **AdaptiveTutor** solves this by modeling *what each student actually knows* using Deep Knowledge Tracing (DKT) and dynamically adapting both retrieval results and MCQ difficulty per individual student.
+AdaptiveTutor is a full-stack AI study assistant that transforms your college PDFs, lecture slides, and notes into an intelligent, personalized tutor. 
 
----
-
-## Architecture
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                     Frontend (React + Vite)                  │
-│  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌───────────────┐  │
-│  │  Upload   │ │   Chat   │ │   Quiz   │ │ Knowledge Map │  │
-│  │   Page    │ │   Page   │ │   Page   │ │    Page       │  │
-│  └────┬─────┘ └────┬─────┘ └────┬─────┘ └──────┬────────┘  │
-│       └────────────┴────────────┴───────────────┘           │
-└───────────────────────────┬─────────────────────────────────┘
-                            │ HTTP (localhost:5173 → :8000)
-┌───────────────────────────┴─────────────────────────────────┐
-│                    Backend (FastAPI)                          │
-│                                                              │
-│  ┌──────────────┐    ┌───────────────┐    ┌─────────────┐  │
-│  │  Document     │───>│  Hybrid       │───>│  RAG Chain  │  │
-│  │  Pipeline     │    │  Retriever    │    │  (LangChain)│  │
-│  │  (OCR+Chunk)  │    │  BM25+Dense   │    │             │  │
-│  └──────────────┘    │  +RRF+Rerank  │    └─────────────┘  │
-│                       └───────┬───────┘                      │
-│                               │                              │
-│  ┌──────────────┐    ┌───────┴───────┐    ┌─────────────┐  │
-│  │  MCQ         │───>│  Deep         │───>│  Evaluation  │  │
-│  │  Generator   │    │  Knowledge    │    │  (RAGAs+AUC) │  │
-│  │  (Adaptive)  │    │  Tracing      │    │             │  │
-│  └──────────────┘    │  (LSTM/PyTorch)│    └─────────────┘  │
-│                      └───────────────┘                       │
-│                                                              │
-│  ChromaDB (Vector Store)  │  BM25 Index  │  Student States  │
-└──────────────────────────────────────────────────────────────┘
-```
+Unlike generic chatbots, AdaptiveTutor uses **Retrieval-Augmented Generation (RAG)** to ground every answer in your actual study material — with page citations — and **Bayesian Knowledge Tracing (BKT)** to model your understanding per concept, dynamically adapting quiz difficulty as you learn.
 
 ---
 
-## Tech Stack
+## ✨ Features
 
-| Layer        | Technology                                               |
-| ------------ | -------------------------------------------------------- |
-| **Frontend** | React 18, Vite, TailwindCSS, Framer Motion, Recharts    |
-| **Backend**  | Python 3.10+, FastAPI, LangChain, PyTorch               |
-| **Storage**  | ChromaDB (vector), JSON (student states), File (PDFs)   |
-| **ML/NLP**   | sentence-transformers, KeyBERT, PyTorch LSTM, BM25      |
-| **OCR**      | pytesseract (for scanned PDFs)                          |
-| **Eval**     | RAGAs metrics, scikit-learn AUC                         |
-| **LLM**      | OpenAI GPT-3.5-turbo (optional, template fallback)      |
+| Feature | Description |
+|---------|-------------|
+| 📄 **PDF Intelligence** | Upload any PDF — text or scanned. OCR fallback ensures nothing is missed. |
+| 💬 **Grounded Chat** | Ask anything about your material. Every answer cites the exact page number. |
+| 🎯 **Adaptive Quizzes** | MCQs that start easy and get harder as you improve — powered by real ML. |
+| 🧠 **Knowledge Tracing** | Bayesian Knowledge Tracing models your mastery per concept in real time. |
+| 📊 **Knowledge Map** | Radar chart + progress bars showing strong topics, weak spots, and growth. |
+| 🌙 **Dark / Light Mode** | Premium UI with smooth theme toggle, persisted across sessions. |
 
 ---
 
-## How to Run
+## 🏗️ Architecture
 
-### Prerequisites
-
-- Python 3.10+
-- Node.js 18+
-- Tesseract OCR installed (`sudo apt install tesseract-ocr` or [Windows installer](https://github.com/UB-Mannheim/tesseract/wiki))
-
-### Backend
-
-```bash
-cd backend
-
-# Create virtual environment
-python -m venv venv
-# Windows:
-venv\Scripts\activate
-# Linux/Mac:
-# source venv/bin/activate
-
-# Install dependencies
-pip install -r requirements.txt
-
-# (Optional) Set your OpenAI API key in .env
-# OPENAI_API_KEY=sk-your-key-here
-
-# Run the server
-uvicorn main:app --reload --port 8000
 ```
+┌─────────────────────────────────────────────────────────┐
+│                      FRONTEND                           │
+│         React + Vite  •  TailwindCSS  •  Framer Motion  │
+│    Upload  │  Chat  │  Quiz  │  Knowledge Map           │
+└──────────────────────┬──────────────────────────────────┘
+                       │ REST API
+┌──────────────────────▼──────────────────────────────────┐
+│                      BACKEND                            │
+│                   FastAPI + Python                      │
+│                                                         │
+│  ┌─────────────┐   ┌──────────────┐   ┌─────────────┐  │
+│  │  pipeline   │   │     rag      │   │     mcq     │  │
+│  │  PDF → OCR  │   │  Retriever   │   │  Generator  │  │
+│  │  Chunk/Embed│   │  + LLM Chain │   │  Adaptive   │  │
+│  └──────┬──────┘   └──────┬───────┘   └──────┬──────┘  │
+│         │                 │                  │          │
+│  ┌──────▼──────┐   ┌──────▼───────┐   ┌──────▼──────┐  │
+│  │  ChromaDB   │   │  Groq LLM    │   │    dkt      │  │
+│  │Vector Store │   │Llama 3.3 70B │   │Bayesian KT  │  │
+│  └─────────────┘   └──────────────┘   └─────────────┘  │
+└─────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 🤖 How the ML Works
+
+### RAG Pipeline
+1. PDF is loaded and chunked (512 tokens, 64 overlap)
+2. Chunks embedded with `all-MiniLM-L6-v2` → stored in ChromaDB
+3. On query: top-5 relevant chunks retrieved via semantic search
+4. Chunks + question passed to Llama 3.3 70B → grounded answer with page citations
+
+### Bayesian Knowledge Tracing (BKT)
+Tracks your knowledge state per concept using 4 parameters:
+- **P(Learn)** = 0.30 — probability of learning from each attempt
+- **P(Forget)** = 0.05 — probability of forgetting
+- **P(Guess)** = 0.25 — probability of guessing correctly
+- **P(Slip)** = 0.10 — probability of slipping despite knowing
+
+### Adaptive Difficulty
+```
+conceptual  ──► (score > 0.5, attempts ≥ 2) ──► application
+application ──► (score > 0.7, attempts ≥ 4) ──► analytical
+any level   ──► (score < 0.35)              ──► conceptual (reset)
+```
+
+---
+
+## 🛠️ Tech Stack
 
 ### Frontend
+- **React 18 + Vite** — UI framework
+- **TailwindCSS** — utility-first styling
+- **Framer Motion** — animations
+- **Recharts** — radar chart visualizations
+- **Lucide React** — icon library
 
+### Backend
+- **FastAPI** — REST API server
+- **LangChain** — document loading + chunking pipeline
+- **ChromaDB** — vector database
+- **Sentence Transformers** — `all-MiniLM-L6-v2` embeddings
+- **PyPDF + pytesseract** — PDF parsing + OCR fallback
+- **Groq API** — Llama 3.3 70B inference
+
+### ML / AI
+- **RAG** — Retrieval Augmented Generation
+- **BKT** — Bayesian Knowledge Tracing
+- **Adaptive MCQ** — difficulty progression system
+
+---
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Python 3.11+
+- Node.js 18+
+- Groq API key (free at [console.groq.com](https://console.groq.com))
+
+### 1. Clone the repo
 ```bash
-cd frontend
-
-# Install dependencies
-npm install
-
-# Run the dev server
-npm run dev
+git clone https://github.com/yourusername/adaptive-tutor.git
+cd adaptive-tutor
 ```
 
-The frontend will be available at **http://localhost:5173** and will proxy API calls to the backend at **http://localhost:8000**.
+### 2. Backend setup
+```bash
+cd backend
+pip install -r requirements.txt
+```
+
+Create `backend/.env`:
+```env
+GROQ_API_KEY=your_groq_api_key_here
+```
+
+Start the backend:
+```bash
+uvicorn main:app --reload
+```
+Backend runs at `http://localhost:8000`
+
+### 3. Frontend setup
+```bash
+cd frontend
+npm install
+npm run dev
+```
+Frontend runs at `http://localhost:5173`
 
 ---
 
-## API Endpoints
+## 📡 API Endpoints
 
-| Method | Path              | Description                                    |
-| ------ | ----------------- | ---------------------------------------------- |
-| POST   | `/upload`         | Upload and index a PDF document                |
-| POST   | `/chat`           | Ask a question, get RAG answer + citations     |
-| POST   | `/mcq`            | Generate adaptive MCQ for a topic              |
-| POST   | `/mcq/answer`     | Submit MCQ answer, update DKT knowledge state  |
-| GET    | `/knowledge/{id}` | Get student knowledge scores per concept       |
-| GET    | `/eval`           | Return evaluation metrics                      |
-| POST   | `/eval/run`       | Run the full evaluation suite                  |
-
----
-
-## Evaluation Results
-
-| Metric             | Score  | Description                               |
-| ------------------ | ------ | ----------------------------------------- |
-| Faithfulness       | ~0.72  | How grounded answers are in source docs   |
-| Answer Relevancy   | ~0.68  | How relevant answers are to questions     |
-| Context Recall     | ~0.61  | How much relevant context was retrieved   |
-| DKT AUC            | ~0.50* | AUC on held-out interaction sequences     |
-
-*\*DKT AUC improves significantly as more student interactions are collected. Initial value is 0.5 (random baseline) with no interaction data.*
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `POST` | `/upload` | Upload and index a PDF |
+| `POST` | `/chat` | Ask a question about uploaded material |
+| `POST` | `/mcq` | Generate an adaptive MCQ |
+| `POST` | `/mcq/answer` | Submit answer + update knowledge state |
+| `GET` | `/knowledge/{session_id}` | Get full knowledge state |
+| `GET` | `/health` | Health check |
 
 ---
 
-## Features
+## 📁 Project Structure
 
-- **Smart PDF Processing** - Handles both digital and scanned PDFs with OCR
-- **Hybrid Retrieval** - Combines BM25 sparse + dense vector search with Reciprocal Rank Fusion
-- **Knowledge-Aware Reranking** - Retrieval adapts based on what the student knows/doesn't know
-- **Adaptive MCQs** - Questions get harder as student mastery increases (Conceptual -> Application -> Analytical)
-- **Deep Knowledge Tracing** - LSTM model tracks per-concept knowledge probability (0-1)
-- **Beautiful UI** - Premium EdTech aesthetic with dark/light mode, glassmorphism, smooth animations
-- **Knowledge Visualization** - Radar chart + progress bars showing mastery per concept
-
----
-
-## Screenshots
-
-*Screenshots coming soon. Run the app to see:*
-- Upload page with drag-and-drop PDF zone
-- Chat interface with page citations and concept tags
-- Adaptive quiz with difficulty badges
-- Knowledge map with radar chart and progress bars
-
----
-
-## Future Work
-
-- [ ] Multi-modal document support (images, tables, LaTeX)
-- [ ] Collaborative study sessions with shared knowledge models
-- [ ] Spaced repetition scheduling based on DKT predictions
-- [ ] Fine-tuned embedding model on educational content
-- [ ] Mobile-responsive PWA support
-- [ ] Integration with LMS platforms (Canvas, Moodle)
-- [ ] Real-time collaborative annotation of study materials
-- [ ] Transfer learning: pre-train DKT on population data, fine-tune per student
+```
+adaptive-tutor/
+├── backend/
+│   ├── main.py          # FastAPI app + all endpoints
+│   ├── pipeline.py      # PDF ingestion + ChromaDB indexing
+│   ├── rag.py           # RAG chain + answer generation
+│   ├── mcq.py           # Adaptive MCQ generation
+│   ├── dkt.py           # Bayesian Knowledge Tracing
+│   ├── llm.py           # Groq LLM wrapper
+│   ├── requirements.txt
+│   └── .env             # GROQ_API_KEY (never commit this)
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   │   └── Layout.jsx
+│   │   ├── pages/
+│   │   │   ├── Upload.jsx
+│   │   │   ├── Chat.jsx
+│   │   │   ├── Quiz.jsx
+│   │   │   └── KnowledgeMap.jsx
+│   │   ├── App.jsx
+│   │   └── index.css
+│   └── package.json
+└── README.md
+```
 
 ---
 
-## License
+## 🔮 Future Work
 
-MIT
+- [ ] Multi-PDF support per session
+- [ ] Spaced repetition scheduling (SM-2 algorithm)
+- [ ] Support for PPTX and DOCX files
+- [ ] Collaborative study rooms
+- [ ] Mobile app (React Native)
+- [ ] Export knowledge report as PDF
+- [ ] Fine-tuned embedding model for academic text
+
+---
+
+## 📄 License
+
+MIT License — see [LICENSE](LICENSE) for details.
+
+---
+
+<div align="center">
+
+Built with ❤️ for the **Amazon ML Summer School** application
+
+*If this project helped you, give it a ⭐*
+
+</div>
