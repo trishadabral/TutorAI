@@ -190,7 +190,7 @@ adaptive-tutor/
 │   ├── dkt.py           # Bayesian Knowledge Tracing
 │   ├── llm.py           # Groq LLM wrapper
 │   ├── requirements.txt
-│   └── .env             # GROQ_API_KEY (never commit this)
+│   └── .env             # GROQ_API_KEY 
 ├── frontend/
 │   ├── src/
 │   │   ├── components/
@@ -228,8 +228,6 @@ MIT License — see [LICENSE](LICENSE) for details.
 
 <div align="center">
 
-Built with ❤️ for the **Amazon ML Summer School** application
-
-*If this project helped you, give it a ⭐*
+Built with by trisha
 
 </div>
